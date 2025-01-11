@@ -1,6 +1,4 @@
-<html>
-<head>
-  <base href="https://demo.example.com/">
+<html><head><base href="https://demo.example.com/">
   <title>ball catchen gaem</title>
   <style>
     body {
@@ -104,52 +102,52 @@
     <div id="milestones"></div>
     <div id="shop">
       <h3>upgrades shoppe</h3>
-      <div class="shop-item" data-unlock="0" onclick="buyUpgrade('speed')">
+      <div class="shop-item" data-unlock="0" onclick="buyUpgrade(&apos;speed&apos;)">
         zoomies boost (&#x24;100)
       </div>
-      <div class="shop-item" data-unlock="500" onclick="buyUpgrade('value')">
+      <div class="shop-item" data-unlock="500" onclick="buyUpgrade(&apos;value&apos;)">
         moar valuez (&#x24;200)
       </div>
-      <div class="shop-item" data-unlock="1000" onclick="buyUpgrade('size')">
+      <div class="shop-item" data-unlock="1000" onclick="buyUpgrade(&apos;size&apos;)">
         smol ball (&#x24;500)
       </div>
-      <div class="shop-item" data-unlock="2000" onclick="buyUpgrade('multiball')">
+      <div class="shop-item" data-unlock="2000" onclick="buyUpgrade(&apos;multiball&apos;)">
         many ballz (&#x24;1000)
       </div>
-      <div class="shop-item" data-unlock="5000" onclick="buyUpgrade('zigzag')">
+      <div class="shop-item" data-unlock="5000" onclick="buyUpgrade(&apos;zigzag&apos;)">
         ziggy zaggy (&#x24;2000)
       </div>
-      <div class="shop-item" data-unlock="10000" onclick="buyUpgrade('teleport')">
+      <div class="shop-item" data-unlock="10000" onclick="buyUpgrade(&apos;teleport&apos;)">
         poof! (&#x24;5000)
       </div>
-      <div class="shop-item" data-unlock="20000" onclick="buyUpgrade('fade')">
+      <div class="shop-item" data-unlock="20000" onclick="buyUpgrade(&apos;fade&apos;)">
         ghosty ball (&#x24;10000)
       </div>
-      <div class="shop-item" data-unlock="50000" onclick="buyUpgrade('spin')">
+      <div class="shop-item" data-unlock="50000" onclick="buyUpgrade(&apos;spin&apos;)">
         spinny ball (&#x24;20000)
       </div>
-      <div class="shop-item" data-unlock="100000" onclick="buyUpgrade('rainbow')">
+      <div class="shop-item" data-unlock="100000" onclick="buyUpgrade(&apos;rainbow&apos;)">
         rainbowz (&#x24;50000)
       </div>
-      <div class="shop-item" data-unlock="500000" onclick="buyUpgrade('gravity')">
+      <div class="shop-item" data-unlock="500000" onclick="buyUpgrade(&apos;gravity&apos;)">
         heavy ball (&#x24;100000)
       </div>
-      <div class="shop-item" data-unlock="1000000" onclick="buyUpgrade('freeze')">
+      <div class="shop-item" data-unlock="1000000" onclick="buyUpgrade(&apos;freeze&apos;)">
         time stoppy (&#x24;500000)
       </div>
-      <div class="shop-item" data-unlock="5000000" onclick="buyUpgrade('clone')">
+      <div class="shop-item" data-unlock="5000000" onclick="buyUpgrade(&apos;clone&apos;)">
         cloney ball (&#x24;1000000)
       </div>
-      <div class="shop-item" data-unlock="10000000" onclick="buyUpgrade('quantum')">
+      <div class="shop-item" data-unlock="10000000" onclick="buyUpgrade(&apos;quantum&apos;)">
         quantum magic (&#x24;5000000)
       </div>
-      <div class="shop-item" data-unlock="50000000" onclick="buyUpgrade('blackhole')">
+      <div class="shop-item" data-unlock="50000000" onclick="buyUpgrade(&apos;blackhole&apos;)">
         black holez (&#x24;10000000)
       </div>
-      <div class="shop-item" data-unlock="100000000" onclick="buyUpgrade('dimension')">
+      <div class="shop-item" data-unlock="100000000" onclick="buyUpgrade(&apos;dimension&apos;)">
         dimension rift (&#x24;50000000)
       </div>
-      <div class="shop-item" data-unlock="500000000" onclick="buyUpgrade('infinity')">
+      <div class="shop-item" data-unlock="500000000" onclick="buyUpgrade(&apos;infinity&apos;)">
         infinity power (&#x24;1000000000)
       </div>
     </div>
@@ -158,132 +156,203 @@
   <audio id="clickSound" src="/SlurpLick - Sound Effect for editing.mp3" preload="auto"></audio>
   <audio id="backgroundMusic" src="/The Penis (Eek!).mp3" preload="auto" loop></audio>
 
-  <script>
-    let score = 0;
-    let money = 0;
-    let upgrades = {
-      speed: 0,
-      value: 0,
-      size: 0,
-      multiball: 0,
-      zigzag: 0,
-      teleport: 0,
-      fade: 0,
-      spin: 0,
-      rainbow: 0,
-      gravity: 0,
-      freeze: 0,
-      clone: 0,
-      quantum: 0,
-      blackhole: 0,
-      dimension: 0,
-      infinity: 0
-    };
-    const costs = {
-      speed: 100,
-      value: 200,
-      size: 500,
-      multiball: 1000,
-      zigzag: 2000,
-      teleport: 5000,
-      fade: 10000,
-      spin: 20000,
-      rainbow: 50000,
-      gravity: 100000,
-      freeze: 500000,
-      clone: 1000000,
-      quantum: 5000000,
-      blackhole: 10000000,
-      dimension: 50000000,
-      infinity: 1000000000
-    };
-    const valueBonuses = {
-      speed: 20,
-      value: 50,
-      size: 50,
-      multiball: 200,
-      zigzag: 500,
-      teleport: 1000,
-      fade: 2000,
-      spin: 5000,
-      rainbow: 10000,
-      gravity: 20000,
-      freeze: 50000,
-      clone: 100000,
-      quantum: 200000,
-      blackhole: 500000,
-      dimension: 1000000,
-      infinity: 2000000
-    };
-    const game = document.getElementById('game');
-    const scoreDisplay = document.getElementById('score');
-    const moneyDisplay = document.getElementById('money');
-    const clickSound = document.getElementById('clickSound');
-    const backgroundMusic = document.getElementById('backgroundMusic');
-    document.addEventListener('click', () => {
-      if (backgroundMusic.paused) {
-        backgroundMusic.play();
+  <script>let score = 0;
+let money = 0;
+let upgrades = {
+  speed: 0,
+  value: 0,
+  size: 0,
+  multiball: 0,
+  zigzag: 0,
+  teleport: 0,
+  fade: 0,
+  spin: 0,
+  rainbow: 0,
+  gravity: 0,
+  freeze: 0,
+  clone: 0,
+  quantum: 0,
+  blackhole: 0,
+  dimension: 0,
+  infinity: 0
+};
+const costs = {
+  speed: 100,
+  value: 200,
+  size: 500,
+  multiball: 1000,
+  zigzag: 2000,
+  teleport: 5000,
+  fade: 10000,
+  spin: 20000,
+  rainbow: 50000,
+  gravity: 100000,
+  freeze: 500000,
+  clone: 1000000,
+  quantum: 5000000,
+  blackhole: 10000000,
+  dimension: 50000000,
+  infinity: 1000000000
+};
+const valueBonuses = {
+  speed: 20,
+  value: 50,
+  size: 50,
+  multiball: 200,
+  zigzag: 500,
+  teleport: 1000,
+  fade: 2000,
+  spin: 5000,
+  rainbow: 10000,
+  gravity: 20000,
+  freeze: 50000,
+  clone: 100000,
+  quantum: 200000,
+  blackhole: 500000,
+  dimension: 1000000,
+  infinity: 2000000
+};
+const game = document.getElementById('game');
+const scoreDisplay = document.getElementById('score');
+const moneyDisplay = document.getElementById('money');
+const clickSound = document.getElementById('clickSound');
+const backgroundMusic = document.getElementById('backgroundMusic');
+document.addEventListener('click', () => {
+  if (backgroundMusic.paused) {
+    backgroundMusic.play();
+  }
+});
+function createMoneyPopup(amount, x, y) {
+  const popup = document.createElement('div');
+  popup.className = 'money-popup';
+  popup.textContent = `+${amount}$!`;
+  popup.style.left = `${x}px`;
+  popup.style.top = `${y}px`;
+  game.appendChild(popup);
+  setTimeout(() => popup.remove(), 1000);
+}
+document.addEventListener('keydown', e => {
+  if (e.ctrlKey && e.key === '/') {
+    updateMoney(3240302403);
+    score += 69;
+    scoreDisplay.textContent = `teh score: ${score}`;
+    checkUnlocks();
+  }
+});
+function checkUnlocks() {
+  document.querySelectorAll('.shop-item').forEach(item => {
+    const unlockValue = parseInt(item.dataset.unlock);
+    if (money >= unlockValue) {
+      item.classList.add('unlocked');
+    }
+  });
+  const nextUnlock = Array.from(document.querySelectorAll('.shop-item:not(.unlocked)')).map(item => parseInt(item.dataset.unlock)).sort((a, b) => a - b)[0];
+  if (nextUnlock) {
+    document.getElementById('milestones').textContent = `next upgrade at: $${nextUnlock.toLocaleString()}`;
+  }
+}
+function updateMoney(amount) {
+  money += amount;
+  moneyDisplay.textContent = `$${money.toLocaleString()}`;
+  updateShopAvailability();
+  checkUnlocks();
+}
+function updateShopAvailability() {
+  document.querySelectorAll('.shop-item').forEach(item => {
+    const type = item.textContent.toLowerCase().split(' ')[0];
+    if (money < costs[type]) {
+      item.classList.add('disabled');
+    } else {
+      item.classList.remove('disabled');
+    }
+  });
+}
+function playClickSound() {
+  clickSound.currentTime = 0;
+  clickSound.play();
+}
+function buyUpgrade(type) {
+  if (money >= costs[type]) {
+    upgrades[type]++;
+    updateMoney(-costs[type]);
+    if (type === 'multiball' || type === 'clone') {
+      createBall();
+    }
+  }
+}
+function createBall() {
+  const ball = document.createElement('div');
+  ball.className = 'ball';
+  const baseSize = Math.max(20, 50 - upgrades.size * 5);
+  ball.style.width = baseSize + 'px';
+  ball.style.height = baseSize + 'px';
+  const maxX = game.clientWidth - baseSize;
+  const maxY = game.clientHeight - baseSize;
+  ball.style.left = maxX / 2 + 'px';
+  ball.style.top = maxY * 0.6 + 'px';
+  if (upgrades.spin) {
+    ball.style.animation = `spin ${3 - upgrades.spin * 0.5}s linear infinite`;
+  }
+  ball.addEventListener('click', e => {
+    score++;
+    playClickSound();
+    let moneyGained = 10;
+    Object.entries(upgrades).forEach(([upgrade, level]) => {
+      if (level > 0) {
+        moneyGained += valueBonuses[upgrade] * level;
       }
     });
-
-    function createMoneyPopup(amount, x, y) {
-      const popup = document.createElement('div');
-      popup.className = 'money-popup';
-      popup.textContent = `$${amount}!`;
-      popup.style.left = `${x}px`;
-      popup.style.top = `${y}px`;
-      game.appendChild(popup);
-      setTimeout(() => popup.remove(), 1000);
+    updateMoney(moneyGained);
+    scoreDisplay.textContent = `teh score: ${score}`;
+    createMoneyPopup(moneyGained, e.clientX - game.offsetLeft, e.clientY - game.offsetTop);
+    ball.remove();
+    createBall();
+    if (upgrades.clone && Math.random() < 0.1) createBall();
+  });
+  game.appendChild(ball);
+  let speedMultiplier = 1 + upgrades.speed * 0.2;
+  let dx = (Math.random() - 0.5) * 4 * speedMultiplier;
+  let dy = (Math.random() - 0.5) * 4 * speedMultiplier;
+  let zigzagCounter = 0;
+  function moveBall() {
+    if (!ball.isConnected) return;
+    let x = parseFloat(ball.style.left);
+    let y = parseFloat(ball.style.top);
+    if (upgrades.zigzag) {
+      zigzagCounter += 0.1;
+      dx += Math.sin(zigzagCounter) * 0.5 * upgrades.zigzag;
     }
-
-    function buyUpgrade(upgrade) {
-      if (money >= costs[upgrade]) {
-        money -= costs[upgrade];
-        upgrades[upgrade]++;
-        createMoneyPopup(costs[upgrade], event.pageX, event.pageY);
-        updateShop();
+    if (upgrades.teleport && Math.random() < 0.001 * upgrades.teleport) {
+      x = Math.random() * (maxX - 100) + 50;
+      y = Math.random() * (maxY - 100) + 50;
+    }
+    if (upgrades.fade) {
+      ball.style.opacity = 0.5 + Math.abs(Math.sin(Date.now() / 1000)) * 0.5;
+    }
+    if (upgrades.rainbow) {
+      const hue = Date.now() / 20 % 360;
+      ball.style.background = `hsl(${hue}, 100%, 50%)`;
+    }
+    if (upgrades.quantum && Math.random() < 0.01) {
+      dx = -dx;
+      dy = -dy;
+    }
+    if (x <= 0 || x >= maxX) dx *= -1;
+    if (y <= 0 || y >= maxY) dy *= -1;
+    ball.style.left = x + dx + 'px';
+    ball.style.top = y + dy + 'px';
+    requestAnimationFrame(moveBall);
+  }
+  requestAnimationFrame(moveBall);
+}
+createBall();
+checkUnlocks();
+const style = document.createElement('style');
+style.textContent = `
+      @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
       }
-    }
-
-    function updateShop() {
-      const shopItems = document.querySelectorAll('.shop-item');
-      shopItems.forEach(item => {
-        const unlock = parseInt(item.getAttribute('data-unlock'));
-        if (money >= unlock) {
-          item.classList.add('unlocked');
-          item.classList.remove('disabled');
-        } else {
-          item.classList.remove('unlocked');
-          item.classList.add('disabled');
-        }
-      });
-    }
-
-    function spawnBall() {
-      const ball = document.createElement('div');
-      ball.classList.add('ball');
-      ball.style.left = Math.random() * (game.offsetWidth - 50) + 'px';
-      ball.style.top = -50 + 'px';
-      ball.addEventListener('click', () => {
-        score++;
-        money += valueBonuses.speed;
-        scoreDisplay.textContent = 'teh score: ' + score;
-        moneyDisplay.textContent = '$' + money;
-        ball.remove();
-        createMoneyPopup(valueBonuses.speed, event.pageX, event.pageY);
-        updateShop();
-      });
-      game.appendChild(ball);
-      setInterval(() => {
-        const rect = ball.getBoundingClientRect();
-        ball.style.top = rect.top + 1 + 'px';
-        if (rect.top > game.offsetHeight) {
-          ball.remove();
-        }
-      }, 20);
-    }
-
-    setInterval(spawnBall, 1000);
-  </script>
-</body>
-</html>
+    `;
+document.head.appendChild(style);</script>
+</body></html>
